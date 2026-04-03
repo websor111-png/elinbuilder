@@ -1,0 +1,137 @@
+{
+  "theme": "light",
+  "archetype": "4 (Swiss & High-Contrast)",
+  "vibe": "Objective, rigid, functional, professional, and business-focused.",
+  "colors": {
+    "background": {
+      "default": "#FFFFFF",
+      "muted": "#F4F4F5",
+      "subtle": "#FAFAFA"
+    },
+    "text": {
+      "primary": "#0A0A0A",
+      "secondary": "#52525B",
+      "muted": "#A1A1AA"
+    },
+    "primary": {
+      "default": "#002FA7",
+      "hover": "#002480",
+      "foreground": "#FFFFFF"
+    },
+    "accent": {
+      "default": "#FF3B30",
+      "hover": "#CC2F26",
+      "foreground": "#FFFFFF"
+    },
+    "border": {
+      "default": "#E4E4E7",
+      "strong": "#18181B"
+    },
+    "status": {
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "info": "#3B82F6"
+    }
+  },
+  "typography": {
+    "font_families": {
+      "heading": "Outfit, sans-serif",
+      "body": "IBM Plex Sans, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "sizes": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter leading-none",
+      "h2": "text-3xl sm:text-4xl tracking-tight leading-none",
+      "h3": "text-2xl sm:text-3xl tracking-tight",
+      "h4": "text-xl sm:text-2xl font-medium",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm text-zinc-500",
+      "label": "text-xs font-semibold uppercase tracking-[0.2em]"
+    },
+    "rules": [
+      "Headings must use tight letter spacing (tracking-tight or tracking-tighter).",
+      "Never use Inter for headings.",
+      "Labels and overlines must be uppercase with wide tracking.",
+      "Hierarchy gap rule: Jump between heading and subheading must not exceed 2 Tailwind steps."
+    ]
+  },
+  "layout": {
+    "spacing": {
+      "container": "px-4 md:px-8 lg:px-12",
+      "section": "py-20 md:py-32",
+      "card_padding": "p-6 md:p-8"
+    },
+    "grid_systems": {
+      "marketing_bento": "grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-8",
+      "dashboard_control_room": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    },
+    "rules": [
+      "Mobile-first always.",
+      "Generous spacing: use 2x-3x more padding inside containers.",
+      "Grid children must be direct children.",
+      "Containers with borders must have internal padding to prevent text collision."
+    ]
+  },
+  "components": {
+    "surfaces": {
+      "cards": "bg-white border border-zinc-200 shadow-sm rounded-md",
+      "glass": "bg-white/70 backdrop-blur-xl border-b border-zinc-200/50",
+      "grid_borders": "border-collapse style layout for data-heavy sections."
+    },
+    "buttons": {
+      "primary": "bg-[#002FA7] text-white rounded-sm px-6 py-2.5 hover:bg-[#002480] transition-colors shadow-sm",
+      "secondary": "bg-white border border-zinc-200 text-zinc-900 rounded-sm px-6 py-2.5 hover:bg-zinc-50 transition-colors",
+      "ghost": "hover:bg-zinc-100 text-zinc-700 rounded-sm px-6 py-2.5 transition-colors"
+    },
+    "rules": [
+      "Use sharp edges or very subtle roundness (max 6px).",
+      "Never use muddy gray transparencies.",
+      "Use 1px crisp borders for definitions rather than relying completely on shadows.",
+      "Shadcn components should be overridden to remove Vercel-like large border radii."
+    ]
+  },
+  "motion": {
+    "hover": "transition-all duration-200 ease-in-out",
+    "active": "active:scale-[0.98]",
+    "rules": [
+      "Hover states must always explicitly set text and background color.",
+      "Animations must respect prefers-reduced-motion.",
+      "Use progressive disclosure in the dashboard to reduce cognitive load."
+    ]
+  },
+  "media": {
+    "image_urls": [
+      {
+        "category": "hero",
+        "url": "https://images.unsplash.com/photo-1767449441925-737379bc2c4d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBtb2JpbGUlMjBhcHAlMjB1c2VyJTIwaW50ZXJmYWNlJTIwc21hcnRwaG9uZSUyMG1vY2t1cHN8ZW58MHx8fHwxNzc1MjE1MjYyfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Mobile app interface mockup for the AI app builder hero section"
+      },
+      {
+        "category": "dashboard_preview",
+        "url": "https://images.unsplash.com/photo-1771923082503-0a3381c46cef?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAxODF8MHwxfHNlYXJjaHwzfHxkYXNoYm9hcmQlMjB1c2VyJTIwaW50ZXJmYWNlfGVufDB8fHx8MTc3NTIxNTI3N3ww&ixlib=rb-4.1.0&q=85",
+        "description": "Laptop displaying a dashboard, useful for the SaaS product showcase section"
+      },
+      {
+        "category": "background_abstract",
+        "url": "https://images.pexels.com/photos/31757550/pexels-photo-31757550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Bold geometric pattern with triangles for use in CTA banners or feature section backgrounds (with white overlay)"
+      },
+      {
+        "category": "feature_mobile",
+        "url": "https://images.unsplash.com/photo-1706700392642-dee59f678a09?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBtb2JpbGUlMjBhcHAlMjB1c2VyJTIwaW50ZXJmYWNlJTIwc21hcnRwaG9uZSUyMG1vY2t1cHN8ZW58MHx8fHwxNzc1MjE1MjYyfDA&ixlib=rb-4.1.0&q=85",
+        "description": "A group of cell phones to demonstrate the multi-platform output capability (Android/iOS)"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Strictly apply the 'Swiss & High-Contrast' archetype: Use stark white backgrounds with crisp black text and Klein Blue (#002FA7) accents.",
+    "Do not use generic fonts like Inter for headings. Use Outfit (or similar geometric sans) for headings and IBM Plex Sans for body text.",
+    "Implement the dashboard using the 'Control Room' grid layout: tight gaps, full utilization of space, and data-dense cards.",
+    "Use Shadcn UI but heavily customize the radius to be crisp (rounded-sm or none) and remove generic drop-shadows in favor of 1px solid borders.",
+    "Add data-testid attributes to ALL interactive elements (buttons, forms, links) for testing purposes.",
+    "For the web-to-mobile app builder, ensure the workspace layout has progressive disclosure to keep the UI clean while handling complex AI-generation settings.",
+    "Integrate provided media URLs in their respective sections. Do not use random placeholders.",
+    "Ensure contrast ratios meet or exceed WCAG AA standards, especially on text over image or colored backgrounds."
+  ]
+}
