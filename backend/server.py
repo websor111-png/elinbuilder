@@ -795,42 +795,37 @@ logger = logging.getLogger(__name__)
 # Startup
 @app.on_event("startup")
 async def startup():
+    # Create indexes only - no seeding
     await db.users.create_index("email", unique=True)
     await db.login_attempts.create_index("identifier")
     await db.apps.create_index("user_id")
     await db.apps.create_index("id", unique=True)
     await db.chat_messages.create_index([("app_id", 1), ("user_id", 1)])
     
-    # Seed site settings
-    existing_settings = await db.site_settings.find_one({"key": "main"})
-    if not existing_settings:
-        await db.site_settings.insert_one({
-            "key": "main",
-            "logo_url": "https://customer-assets.emergentagent.com/job_deploy-automation-14/artifacts/bf162d38_file_00000000607472438cf619bea5a5c3b5.png",
-            "site_name": "Elyn Builder",
-            "favicon_url": "https://customer-assets.emergentagent.com/job_deploy-automation-14/artifacts/bf162d38_file_00000000607472438cf619bea5a5c3b5.png",
-            "updated_at": datetime.now(timezone.utc).isoformat()
-        })
-        logger.info("Site settings seeded")
-
-    # Seed admin
-    admin_email = os.environ.get("ADMIN_EMAIL", "admin@elynbuilder.com")
-    admin_password = os.environ.get("ADMIN_PASSWORD", "ElynAdmin2024!")
-    existing = await db.users.find_one({"email": admin_email})
-    if existing is None:
-        await db.users.insert_one({
-            "username": "Admin",
-            "email": admin_email,
-            "password_hash": hash_password(admin_password),
-            "role": "admin",
-            "blocked": False,
-            "created_at": datetime.now(timezone.utc).isoformat(),
-            "apps_count": 0
-        })
-        logger.info(f"Admin seeded: {admin_email}")
-    elif not verify_password(admin_password, existing["password_hash"]):
-        await db.users.update_one({"email": admin_email}, {"$set": {"password_hash": hash_password(admin_password)}})
-        logger.info("Admin password updated")
+    # Check if installed - only seed if installer was completed
+    install_config = await db.install_config.find_one({"key": "installed"})
+    is_installed = install_config and install_config.get("installed", False)
+    
+    if is_installed:
+        # App is installed via installer, check if admin exists from .env as fallback
+        admin_email = os.environ.get("ADMIN_EMAIL", "")
+        admin_password = os.environ.get("ADMIN_PASSWORD", "")
+        if admin_email and admin_password:
+            existing = await db.users.find_one({"email": admin_email})
+            if existing is None:
+                await db.users.insert_one({
+                    "username": "Admin",
+                    "email": admin_email,
+                    "password_hash": hash_password(admin_password),
+                    "role": "admin",
+                    "blocked": False,
+                    "created_at": datetime.now(timezone.utc).isoformat(),
+                    "apps_count": 0
+                })
+                logger.info(f"Admin seeded from env: {admin_email}")
+        logger.info("Elyn Builder is installed and running")
+    else:
+        logger.info("Elyn Builder NOT installed - showing installer wizard")
 
 @app.on_event("shutdown")
 async def shutdown_db_client():

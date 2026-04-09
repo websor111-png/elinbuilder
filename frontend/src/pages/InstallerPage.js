@@ -439,7 +439,7 @@ export default function InstallerPage() {
                     <p className="text-sm text-white">Password: <span className="font-mono text-[#002FA7]">{'*'.repeat(formData.admin_password.length)}</span></p>
                   </div>
                   <button
-                    onClick={() => navigate('/login')}
+                    onClick={() => window.location.href = '/login'}
                     className="bg-[#002FA7] hover:bg-[#002480] text-white rounded-sm px-8 py-3 font-medium text-sm transition-colors"
                     data-testid="go-to-login-btn"
                   >
